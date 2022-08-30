@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "2044974c-4144-4928-89fd-24838c4a2d05",
+		"name": "BTSE postman-example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23057301"
+	},
+	"item": [
+		{
+			"name": "spot",
+			"item": [
+				{
+					"name": "query-market-summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/market_summary",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"market_summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "charting-data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/ohlcv?symbol=BTC-USD&resolution=30",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"ohlcv"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTC-USD",
+									"description": "market symbol"
+								},
+								{
+									"key": "resolution",
+									"value": "30",
+									"description": "supported resolutions are: \n1: 1min\n5: 5mins\n15: 15mins\n30: 30mins\n60: 60mins\n360: 6hours\n1440: 1day"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query_market_price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/price",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"price"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orderbook-grouping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/orderbook?symbol=BTC-USDT&group=1&limit_bids=5&limit_asks=10",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"orderbook"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTC-USDT"
+								},
+								{
+									"key": "group",
+									"value": "1"
+								},
+								{
+									"key": "limit_bids",
+									"value": "5"
+								},
+								{
+									"key": "limit_asks",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orderbook-L2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/orderbook/L2?symbol=BTC-USD&depth=5",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"orderbook",
+								"L2"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTC-USD"
+								},
+								{
+									"key": "depth",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query-trade-fills",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/trades?symbol=BTC-USD",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"trades"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTC-USD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query-serve-time",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/time",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"time"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-peg-order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/oder/peg?symbol=BTC-USD&price&size=0.0015&size =BUY&type=LIMIT&txType=LIMIT&triggerprice=5000&stealth=10&deviation=1",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"oder",
+								"peg"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTC-USD"
+								},
+								{
+									"key": "price",
+									"value": null
+								},
+								{
+									"key": "size",
+									"value": "0.0015"
+								},
+								{
+									"key": "size ",
+									"value": "BUY"
+								},
+								{
+									"key": "type",
+									"value": "LIMIT"
+								},
+								{
+									"key": "txType",
+									"value": "LIMIT"
+								},
+								{
+									"key": "triggerprice",
+									"value": "5000"
+								},
+								{
+									"key": "stealth",
+									"value": "10"
+								},
+								{
+									"key": "deviation",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "amend-order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/order?symbol=BTC-USD&type=SIZE&value=0.005&clOrderID=",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"order"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTC-USD"
+								},
+								{
+									"key": "type",
+									"value": "SIZE"
+								},
+								{
+									"key": "value",
+									"value": "0.005"
+								},
+								{
+									"key": "clOrderID",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel-order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/order?symbol=BTC-USD",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"order"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTC-USD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel-all-order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/cancelAllAfter?timeout=1638460701",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"cancelAllAfter"
+							],
+							"query": [
+								{
+									"key": "timeout",
+									"value": "1638460701"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query-open-orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/user/open_orders?symbol=BTC-USD",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"user",
+								"open_orders"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTC-USD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query-trade-history",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/user/trade_history?symbol=BTC-USD",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"user",
+								"trade_history"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTC-USD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query-account-fees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{spot}}/user/fees",
+							"host": [
+								"{{spot}}"
+							],
+							"path": [
+								"user",
+								"fees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
