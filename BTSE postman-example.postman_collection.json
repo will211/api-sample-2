@@ -15,11 +15,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{spot}}/market_summary",
+							"raw": "{{staging-url}}/spot/api/v3.2/market_summary",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"market_summary"
 							]
 						}
@@ -32,11 +35,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{spot}}/ohlcv?symbol=BTC-USD&resolution=30",
+							"raw": "{{staging-url}}/spot/api/v3.2/ohlcv?symbol=BTC-USD&resolution=30",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"ohlcv"
 							],
 							"query": [
@@ -56,16 +62,19 @@
 					"response": []
 				},
 				{
-					"name": "query_market_price",
+					"name": "query-market-price",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{spot}}/price",
+							"raw": "{{staging-url}}/spot/api/v3.2/price",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"price"
 							]
 						}
@@ -78,11 +87,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{spot}}/orderbook?symbol=BTC-USDT&group=1&limit_bids=5&limit_asks=10",
+							"raw": "{{staging-url}}/spot/api/v3.2/orderbook?symbol=BTC-USDT&group=1&limit_bids=5&limit_asks=10",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"orderbook"
 							],
 							"query": [
@@ -113,11 +125,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{spot}}/orderbook/L2?symbol=BTC-USD&depth=5",
+							"raw": "{{staging-url}}/spot/api/v3.2/orderbook/L2?symbol=BTC-USD&depth=5",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"orderbook",
 								"L2"
 							],
@@ -141,11 +156,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{spot}}/trades?symbol=BTC-USD",
+							"raw": "{{staging-url}}/spot/api/v3.2/trades?symbol=BTC-USD",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"trades"
 							],
 							"query": [
@@ -164,11 +182,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{spot}}/time",
+							"raw": "{{staging-url}}/spot/api/v3.2/time",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"time"
 							]
 						}
@@ -179,53 +200,47 @@
 					"name": "create-peg-order",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "btse-api",
+								"value": "{{api-key}}",
+								"type": "text"
+							},
+							{
+								"key": "secret",
+								"value": "{{api-secret}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-nonce",
+								"value": "{{api-nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-sign",
+								"value": "{{api-sign}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"symbol\": \"BTC-USD\",\n  \"size\": 1,\n  \"price\": 10000,\n  \"side\": \"BUY\",\n  \"type\": \"LIMIT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{spot}}/oder/peg?symbol=BTC-USD&price&size=0.0015&size =BUY&type=LIMIT&txType=LIMIT&triggerprice=5000&stealth=10&deviation=1",
+							"raw": "{{staging-url}}/spot/api/v3.2/order",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
-								"oder",
-								"peg"
-							],
-							"query": [
-								{
-									"key": "symbol",
-									"value": "BTC-USD"
-								},
-								{
-									"key": "price",
-									"value": null
-								},
-								{
-									"key": "size",
-									"value": "0.0015"
-								},
-								{
-									"key": "size ",
-									"value": "BUY"
-								},
-								{
-									"key": "type",
-									"value": "LIMIT"
-								},
-								{
-									"key": "txType",
-									"value": "LIMIT"
-								},
-								{
-									"key": "triggerprice",
-									"value": "5000"
-								},
-								{
-									"key": "stealth",
-									"value": "10"
-								},
-								{
-									"key": "deviation",
-									"value": "1"
-								}
+								"spot",
+								"api",
+								"v3.2",
+								"order"
 							]
 						}
 					},
@@ -235,32 +250,47 @@
 					"name": "amend-order",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "btse-api",
+								"value": "{{api-key}}",
+								"type": "text"
+							},
+							{
+								"key": "secret",
+								"value": "{{api-secret}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-nonce",
+								"value": "{{api-nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-sign",
+								"value": "{{api-sign}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"symbol\": \"BTC-USD\",\n  \"orderID\": \"574f733c-e3c6-47f4-b51c-468d619eb505\",\n  \"type\": \"PRICE\",\n  \"value\": 10101\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{spot}}/order?symbol=BTC-USD&type=SIZE&value=0.005&clOrderID=",
+							"raw": "{{staging-url}}/spot/api/v3.2/order",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"order"
-							],
-							"query": [
-								{
-									"key": "symbol",
-									"value": "BTC-USD"
-								},
-								{
-									"key": "type",
-									"value": "SIZE"
-								},
-								{
-									"key": "value",
-									"value": "0.005"
-								},
-								{
-									"key": "clOrderID",
-									"value": ""
-								}
 							]
 						}
 					},
@@ -270,13 +300,37 @@
 					"name": "cancel-order",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "btse-api",
+								"value": "{{api-key}}",
+								"type": "text"
+							},
+							{
+								"key": "secret",
+								"value": "{{api-secret}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-nonce",
+								"value": "{{api-nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-sign",
+								"value": "{{api-sign}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{spot}}/order?symbol=BTC-USD",
+							"raw": "{{staging-url}}/spot/api/v3.2/order?symbol=BTC-USD",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"order"
 							],
 							"query": [
@@ -293,20 +347,48 @@
 					"name": "cancel-all-order",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "btse-api",
+								"value": "{{api-key}}",
+								"type": "text"
+							},
+							{
+								"key": "secret",
+								"value": "{{api-secret}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-nonce",
+								"value": "{{api-nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-sign",
+								"value": "{{api-sign}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"timeout\": 1662024952769\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{spot}}/cancelAllAfter?timeout=1638460701",
+							"raw": "{{staging-url}}/spot/api/v3.2/order/cancelAllAfter",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
+								"order",
 								"cancelAllAfter"
-							],
-							"query": [
-								{
-									"key": "timeout",
-									"value": "1638460701"
-								}
 							]
 						}
 					},
@@ -314,15 +396,60 @@
 				},
 				{
 					"name": "query-open-orders",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "btse-api",
+								"value": "{{api-key}}",
+								"type": "text"
+							},
+							{
+								"key": "secret",
+								"value": "{{api-secret}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-nonce",
+								"value": "{{api-nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-sign",
+								"value": "{{api-sign}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{spot}}/user/open_orders?symbol=BTC-USD",
+							"raw": "{{staging-url}}/spot/api/v3.2/user/open_orders?symbol=BTC-USD",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"user",
 								"open_orders"
 							],
@@ -340,13 +467,37 @@
 					"name": "query-trade-history",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "btse-api",
+								"value": "{{api-key}}",
+								"type": "text"
+							},
+							{
+								"key": "secret",
+								"value": "{{api-secret}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-nonce",
+								"value": "{{api-nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-sign",
+								"value": "{{api-sign}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{spot}}/user/trade_history?symbol=BTC-USD",
+							"raw": "{{staging-url}}/spot/api/v3.2/user/trade_history?symbol=BTC-USD",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"user",
 								"trade_history"
 							],
@@ -364,19 +515,321 @@
 					"name": "query-account-fees",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "btse-api",
+								"value": "{{api-key}}",
+								"type": "text"
+							},
+							{
+								"key": "secret",
+								"value": "{{api-secret}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-nonce",
+								"value": "{{api-nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-sign",
+								"value": "{{api-sign}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{spot}}/user/fees",
+							"raw": "{{staging-url}}/spot/api/v3.2/user/fees",
 							"host": [
-								"{{spot}}"
+								"{{staging-url}}"
 							],
 							"path": [
+								"spot",
+								"api",
+								"v3.2",
 								"user",
 								"fees"
 							]
 						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const path = pm.request.url.getPath().substring(pm.request.url.getPath().indexOf('/api'));",
+							"const secret = pm.environment.get('api-secret');",
+							"const nonce = new Date().getTime().toString();",
+							"const body = pm.request.method == 'GET' ? '' : pm.request.body.toString();",
+							"",
+							"console.log(body)",
+							"console.log(path + nonce + body)",
+							"const encoded = CryptoJS.HmacSHA384(path + nonce + body, secret);",
+							"",
+							"// pm.variables.set('api-nonce', nonce);",
+							"// pm.variables.set('api-sign', encoded.toString());",
+							"",
+							"pm.environment.set('api-nonce', nonce);",
+							"pm.environment.set('api-sign', encoded.toString());"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Futures",
+			"item": [
+				{
+					"name": "query-market-summary",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging-url}}/futures/api/v2.1/market_summary",
+							"host": [
+								"{{staging-url}}"
+							],
+							"path": [
+								"futures",
+								"api",
+								"v2.1",
+								"market_summary"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTC",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "charting-data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging-url}}/futures/api/v2.1/ohlcv?symbol=BTCPFC&resolution=15",
+							"host": [
+								"{{staging-url}}"
+							],
+							"path": [
+								"futures",
+								"api",
+								"v2.1",
+								"ohlcv"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTCPFC",
+									"description": "market symbol"
+								},
+								{
+									"key": "resolution",
+									"value": "15",
+									"description": "supported resolutions are: \n1: 1min\n5: 5mins\n15: 15mins\n30: 30mins\n60: 60mins\n360: 6hours\n1440: 1day"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query-market-price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging-url}}/futures/api/v2.1/price",
+							"host": [
+								"{{staging-url}}"
+							],
+							"path": [
+								"futures",
+								"api",
+								"v2.1",
+								"price"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orderbook-grouping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging-url}}/futures/api/v2.1/orderbook?symbol=BTCPFC",
+							"host": [
+								"{{staging-url}}"
+							],
+							"path": [
+								"futures",
+								"api",
+								"v2.1",
+								"orderbook"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTCPFC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orderbook-L2 Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging-url}}/futures/api/v2.1/orderbook/L2?symbol=BTCPFC&depth=5",
+							"host": [
+								"{{staging-url}}"
+							],
+							"path": [
+								"futures",
+								"api",
+								"v2.1",
+								"orderbook",
+								"L2"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTCPFC"
+								},
+								{
+									"key": "depth",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "query-trade-fills",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{staging-url}}/futures/api/v2.1/trades?symbol=BTCPFC&count=10",
+							"host": [
+								"{{staging-url}}"
+							],
+							"path": [
+								"futures",
+								"api",
+								"v2.1",
+								"trades"
+							],
+							"query": [
+								{
+									"key": "symbol",
+									"value": "BTCPFC"
+								},
+								{
+									"key": "count",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "btse-api",
+								"value": "{{api-key}}",
+								"type": "text"
+							},
+							{
+								"key": "secret",
+								"value": "{{api-secret}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-nonce",
+								"value": "{{api-nonce}}",
+								"type": "text"
+							},
+							{
+								"key": "btse-sign",
+								"value": "{{api-sign}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{staging-url}}/futures/api/v2.1/order",
+							"host": [
+								"{{staging-url}}"
+							],
+							"path": [
+								"futures",
+								"api",
+								"v2.1",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const path = pm.request.url.getPath().substring(pm.request.url.getPath().indexOf('/api'));",
+							"const secret = pm.environment.get('api-secret');",
+							"const nonce = new Date().getTime().toString();",
+							"const body = pm.request.method == 'GET' ? '' : pm.request.body.toString();",
+							"",
+							"console.log(body)",
+							"console.log(path + nonce + body)",
+							"const encoded = CryptoJS.HmacSHA384(path + nonce + body, secret);",
+							"",
+							"// pm.variables.set('api-nonce', nonce);",
+							"// pm.variables.set('api-sign', encoded.toString());",
+							"",
+							"pm.environment.set('api-nonce', nonce);",
+							"pm.environment.set('api-sign', encoded.toString());"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
